@@ -18,4 +18,15 @@ class BlogController extends AbstractController
             'owner' => 'Thomas',
         ]);
     }
+
+    /**
+     * @Route("/blog/show/{slug}", name="blog_show", methods={"GET"}, requirements={"slug"="[a-z0-9\-]+"})
+     *
+     */
+    public function show(string $slug)
+    {
+        $verificationSlug = ucwords(str_replace('-', ' ',$slug));
+        return $this->render('blog/show.html.twig', ['slug'=>$verificationSlug,
+            ]);
+    }
 }
