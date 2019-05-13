@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Category</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Content</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for article in articles|slice (0,3)|reverse %}
+        <tr>
+            <td>{{ article.id }}</td>
+            <td>{{ article.title }}</td>
+            <td>{{ article.content }}</td>
+        </tr>
+
+    {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
