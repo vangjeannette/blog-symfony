@@ -8,6 +8,7 @@ use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class BlogController extends AbstractController
 {
@@ -78,7 +79,7 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/blog/category/{categoryName}", name="blog_show_category")
-     * @param Category $category
+     * @ParamConverter Category $category
      * @return Response
      */
 
