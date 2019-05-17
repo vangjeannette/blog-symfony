@@ -77,31 +77,41 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("category/{categoryName<^[a-z0-9-]+$>}",
-     *     defaults={"categoryName" = null},
-     *     name="show_category")
-     * @return Response A response instance
+     * @Route("/blog/category/{categoryName}", name="blog_show_category")
+     * @param Category $category
+     * @return Response
      */
-    public function showByCategory(string $categoryName) : Response
-    {
 
-        $category = $this->getDoctrine()
-            ->getRepository(Category::class)
-            ->findOneBy(['name' => mb_strtolower($categoryName)]);
+    public function showByCategory(Category $category) : Response
+    {
+        $articles = $category->getArticles();
+
+        return $this->render('blog:category.html.twig', [
+            'articles' => $articles,
+            'category' => $category
+        ]);
+
+    }
+
+  //  public function showByCategory(string $categoryName) : Response
+  //  {
+    // ancienne fonction
+     //   $category = $this->getDoctrine()
+     //       ->getRepository(Category::class)
+     //       ->findOneBy(['name' => mb_strtolower($categoryName)]);
 
     //    $articles = $this->getDoctrine()
     //        ->getRepository(Article::class)
     //        ->findBy(['category' => ($category)]);
 
-        $articles = $category->getArticles();
+     //   $articles = $category->getArticles();
 
-
-        return $this->render(
-            'blog/category.html.twig',
-            [
-                'category' => $category,
-                'articles' => $articles
-            ]);
-    }
+      //  return $this->render(
+      //      'blog/category.html.twig',
+      //      [
+      //          'category' => $category,
+      //          'articles' => $articles
+      //      ]);
+   // }
 
 }
