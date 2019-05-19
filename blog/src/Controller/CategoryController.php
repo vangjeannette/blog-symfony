@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category", name="category"
+     * @Route("/category", name="category")
      * @param Request $request
      * @return Response A response
      */
@@ -39,6 +39,10 @@ class CategoryController extends AbstractController
             'form' => $form->createView(),
             'categories' => $categories,
     ]);
-
+        return $this->render('category/index.html.twig', [
+            'category' => $category,
+            'form' => $form->createView(),
+        ]);
     }
+
 }
