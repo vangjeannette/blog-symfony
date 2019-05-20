@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +16,7 @@ class BlogController extends AbstractController
     /**
      * Show all row from article's entity
      *
-     * @Route("/", name="index")
+     * @Route("/articles", name="index")
      * @return Response A response instance
      */
     public function index(): Response
@@ -41,7 +42,7 @@ class BlogController extends AbstractController
      *
      * @param string $slug The slugger
      *
-     * @Route("/showarticle/{slug<^[a-z0-9-]+$>}",
+     * @Route("/showarticle/{slug}",
      *     defaults={"slug" = null},
      *     name="blog_show")
      * @return Response A response instance
@@ -115,4 +116,17 @@ class BlogController extends AbstractController
       //      ]);
    // }
 
+
+    /**
+     * @Route("blog/tag/{name}", name="tag")
+     * @Paramconverter Tag $tag
+     * @return Response A response
+     */
+
+        public function showTag(Tag $tag): Response
+        {
+            return $this->render('blog/tag.html.twig', [
+                'tags' => $tag
+            ]);
+        }
 }
