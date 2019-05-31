@@ -50,6 +50,7 @@ class ArticleController extends AbstractController
             $message = (new \Swift_Message('Un nouvel article vient d\'être publié !'))
                 ->setFrom($this->getParameter('mailer_from'))
                 ->setTo('legrandhotelorleans@gmail.com')
+                ->setContentType('text/html')
                 ->setBody($mailContent);
 
             $mailer->send($message);

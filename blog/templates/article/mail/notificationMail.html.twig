@@ -4,4 +4,4 @@
 
 {% block body %}<p>Un nouvel article vient d'être ajouté sur notre site.</p>
     <p>Venez découvrir l'article {{ article.title }} ici : </p>
-<a href="{{ url('article_show', {'article_show':article.id}) }}"></a>{% endblock %}
+<a href="{{ url('article_show', {'id':article.id}) }}"></a>{% endblock %}
